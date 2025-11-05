@@ -103,12 +103,16 @@ WSGI_APPLICATION = 'PFDESARROLLO.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',   # Indica que usarás MySQL
-        'NAME': 'bddesarrollo',                    # El nombre de tu base de datos
-        'USER': 'root',                        # El nombre de usuario que creaste en MySQL
-        'PASSWORD': '1234',                    # La contraseña de ese usuario
-        'HOST': 'localhost',                    # Si tu BD está en tu máquina, usa 'localhost'
-        'PORT': '3306',                          # El puerto por defecto de MySQL es 3306
+        'ENGINE': 'django.db.backends.mysql', 
+        # Asegúrate de que estas CLAVES coincidan con las generadas por Railway
+        'NAME': os.environ.get('railway'), 
+        'USER': os.environ.get('root'), 
+        'PASSWORD': os.environ.get('DgabuyLBSehNRZlwZwUNxioXovqDODOH'), 
+        'HOST': os.environ.get('mysql.railway.internal'), 
+        'PORT': os.environ.get('3306'), 
+        'OPTIONS': {
+            'unix_socket': None, # <--- ¡SOLUCIONA el error del socket!
+        }
     }
 }
 
