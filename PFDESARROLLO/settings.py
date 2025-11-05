@@ -104,18 +104,16 @@ WSGI_APPLICATION = 'PFDESARROLLO.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
-        # Asegúrate de que estas CLAVES coincidan con las generadas por Railway
-        'NAME': os.environ.get('railway'), 
-        'USER': os.environ.get('root'), 
-        'PASSWORD': os.environ.get('DgabuyLBSehNRZlwZwUNxioXovqDODOH'), 
-        'HOST': os.environ.get('mysql.railway.internal'), 
-        'PORT': os.environ.get('3306'), 
+        'NAME': os.environ.get('MYSQLDATABASE'), 
+        'USER': os.environ.get('MYSQLUSER'), 
+        'PASSWORD': os.environ.get('MYSQLPASSWORD'), 
+        'HOST': os.environ.get('MYSQLHOST'), 
+        'PORT': os.environ.get('MYSQLPORT'), 
         'OPTIONS': {
-            'unix_socket': None, # <--- ¡SOLUCIONA el error del socket!
+            'unix_socket': None,
         }
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
