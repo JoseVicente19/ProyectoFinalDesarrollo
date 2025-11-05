@@ -12,10 +12,12 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
+from dotenv import load_dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+load_dotenv()
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
@@ -104,21 +106,8 @@ WSGI_APPLICATION = 'PFDESARROLLO.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql', 
-        'NAME': os.environ.get('MYSQLDATABASE', ''), 
-        'USER': os.environ.get('MYSQLUSER', ''), 
-        'PASSWORD': os.environ.get('MYSQLPASSWORD', ''), 
-        'HOST': os.environ.get('MYSQLHOST', ''), 
-        'PORT': os.environ.get('MYSQLPORT', None), 
-        'OPTIONS': {
-            # Establecer el juego de caracteres de forma explícita
-            'charset': 'utf8mb4', 
-            # Asegurar que el socket Unix esté deshabilitado para forzar TCP/IP
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-        }
+    'default': dj_database_url.config(default=os.getenv('MYSQL_URL'))
     }
-}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
