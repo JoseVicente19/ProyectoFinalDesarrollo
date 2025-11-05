@@ -110,7 +110,10 @@ DATABASES = {
         'HOST': os.environ.get('MYSQLHOST', ''), 
         'PORT': os.environ.get('MYSQLPORT', None), 
         'OPTIONS': {
-            'unix_socket': None,
+            # Establecer el juego de caracteres de forma explícita
+            'charset': 'utf8mb4', 
+            # Asegurar que el socket Unix esté deshabilitado para forzar TCP/IP
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
         }
     }
 }
