@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-@hs&-_72!u=%c5py3j6n-3)5sy*3^fo&n@r_m+$!1(fz3v*o_!'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -102,17 +102,17 @@ WSGI_APPLICATION = 'PFDESARROLLO.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql', 
-        'NAME': os.environ.get('MYSQLDATABASE'), 
-        'USER': os.environ.get('MYSQLUSER'), 
-        'PASSWORD': os.environ.get('MYSQLPASSWORD'), 
-        'HOST': os.environ.get('MYSQLHOST'), 
-        'PORT': os.environ.get('MYSQLPORT'), 
-        'OPTIONS': {
-            'unix_socket': None,
-        }
-    }
+    'default': {
+        'ENGINE': 'django.db.backends.mysql', 
+        'NAME': os.environ.get('MYSQLDATABASE', ''), 
+        'USER': os.environ.get('MYSQLUSER', ''), 
+        'PASSWORD': os.environ.get('MYSQLPASSWORD', ''), 
+        'HOST': os.environ.get('MYSQLHOST', ''), 
+        'PORT': os.environ.get('MYSQLPORT', None), 
+        'OPTIONS': {
+            'unix_socket': None,
+        }
+    }
 }
 
 # Password validation
@@ -152,6 +152,10 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static', 
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

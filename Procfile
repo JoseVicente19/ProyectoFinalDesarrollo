@@ -1,0 +1,3 @@
+# Procfile
+
+web: gunicorn PFDESARROLLO.wsgi --bind 0.0.0.0:$PORT
