@@ -25,8 +25,30 @@ SECRET_KEY = 'django-insecure-@hs&-_72!u=%c5py3j6n-3)5sy*3^fo&n@r_m+$!1(fz3v*o_!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'mediafiles'
+
+SESSION_COOKIE_SECURE = True
+
+
+CSRF_COOKIE_SECURE = True
+
+
+SECURE_HSTS_SECONDS = 31536000  
+
+
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
+
+SECURE_HSTS_PRELOAD = True
+
+
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
+CSRF_TRUSTED_ORIGINS = os.environ.get('CSRF_TRUSTED_ORIGINS', '').split(',')
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
 
 # Application definition
 
@@ -127,6 +149,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
@@ -144,3 +168,4 @@ AUTHENTICATION_BACKENDS = [
 LOGIN_URL = 'home:login'
 LOGIN_REDIRECT_URL = '/' 
 LOGOUT_REDIRECT_URL = 'home:login'
+
