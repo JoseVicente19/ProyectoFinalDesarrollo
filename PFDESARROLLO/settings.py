@@ -45,7 +45,7 @@ SECURE_HSTS_PRELOAD = True
 
 
 ALLOWED_HOSTS = ['https://proyectofinaldesarrollo-production-919e.up.railway.app/', 'localhost']
-CSRF_TRUSTED_ORIGINS = os.environ.get('CSRF_TRUSTED_ORIGINS', '').split(',')
+CSRF_TRUSTED_ORIGINS = ['http://','https://proyectofinaldesarrollo-production-919e.up.railway.app']
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT = True
@@ -59,7 +59,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'withenoise.runserver_nostatic',
+    'whitenoise.runserver_nostatic',
     'Apps.home',
     'Apps.productos',
     'Apps.pedidos',
